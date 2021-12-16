@@ -12,6 +12,8 @@ import {
   PaddingProps,
   space,
   SpaceProps,
+  flexbox,
+  FlexboxProps,
 } from 'styled-system';
 
 type Props = LayoutProps &
@@ -19,6 +21,7 @@ type Props = LayoutProps &
   SpaceProps &
   BackgroundProps &
   MarginProps &
+  FlexboxProps &
   PaddingProps;
 
 export const Box = emotion.View<Props>`
@@ -28,6 +31,7 @@ export const Box = emotion.View<Props>`
   ${background}
   ${margin}
   ${padding}
+  ${flexbox}
 `;
 
-export type BoxProps = Props;
+export type StyledBoxProps = Props;

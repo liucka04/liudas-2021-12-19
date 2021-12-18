@@ -14,15 +14,19 @@ import {
   SpaceProps,
   flexbox,
   FlexboxProps,
+  BorderProps,
+  border,
 } from 'styled-system';
+import {DefaultTheme} from '~/themes/default';
 
-type Props = LayoutProps &
-  ColorProps &
-  SpaceProps &
-  BackgroundProps &
-  MarginProps &
-  FlexboxProps &
-  PaddingProps;
+type Props = LayoutProps<DefaultTheme> &
+  ColorProps<DefaultTheme> &
+  SpaceProps<DefaultTheme> &
+  BackgroundProps<DefaultTheme> &
+  MarginProps<DefaultTheme> &
+  FlexboxProps<DefaultTheme> &
+  BorderProps<DefaultTheme> &
+  PaddingProps<DefaultTheme>;
 
 export const Box = emotion.View<Props>`
   ${layout}
@@ -32,6 +36,7 @@ export const Box = emotion.View<Props>`
   ${margin}
   ${padding}
   ${flexbox}
+  ${border}
 `;
 
 export type StyledBoxProps = Props;

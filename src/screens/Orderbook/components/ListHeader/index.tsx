@@ -4,10 +4,22 @@ import Text from '~/components/Text';
 
 export const OrderbookListHeader = () => {
   return (
-    <Box flexGrow={0}>
+    <Box
+      flexGrow={0}
+      borderTopWidth={2}
+      borderBottomWidth={1}
+      marginX={-6}
+      paddingX={6}
+      borderStyle="solid"
+      borderColor="gray">
       <Box paddingY={1} flexDirection="row" justifyContent="space-between">
         <Box width={4 / 12} justifyContent="flex-end">
-          <Text textAlign="right" fontSize="lg" fontWeight={700} color="gray">
+          <Text
+            textAlign="right"
+            fontSize="lg"
+            fontWeight={700}
+            color="gray"
+            textStyle="uppercase">
             Price
           </Text>
         </Box>

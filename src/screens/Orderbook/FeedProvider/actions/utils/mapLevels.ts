@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 type Params = {levels: [number, number][]};
 
 export const mapLevels = ({levels}: Params) => {
@@ -12,5 +10,5 @@ export const mapLevels = ({levels}: Params) => {
     };
   });
 
-  return _.take(mappedLevels, 15);
+  return mappedLevels;
 };

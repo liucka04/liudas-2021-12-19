@@ -19,7 +19,7 @@ export const setDelta = ({orderFeed, dispatch}: Params) => {
     type: ActionType.SET_DELTA,
     delta: {
       asks: mapLevels({levels: asks}),
-      bids: mapLevels({levels: asks}),
+      bids: mapLevels({levels: bids}),
     },
   });
 };

@@ -4,10 +4,9 @@ import {Level} from '~/types';
 type Params = {
   stateLevels: Level[];
   incomingLevels: Level[];
-  order: 'asc' | 'desc';
 };
 
-export const mergeLevels = ({stateLevels, incomingLevels, order}: Params) => {
+export const mergeLevels = ({stateLevels, incomingLevels}: Params) => {
   const intersectingLevels = _.intersectionWith(
     incomingLevels,
     stateLevels,
@@ -23,5 +22,5 @@ export const mergeLevels = ({stateLevels, incomingLevels, order}: Params) => {
   const allLevels = [...stateWithoutIntersectingLevels, ...incomingLevels];
   const nonNegativeSizeLevels = allLevels.filter(level => level.size > 0);
 
-  return _.take(_.orderBy(nonNegativeSizeLevels, ['price'], [order]), 15);
+  return _.take(_.orderBy(nonNegativeSizeLevels, ['price'], ['desc']), 10);
 };

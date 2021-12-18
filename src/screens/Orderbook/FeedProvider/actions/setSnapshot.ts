@@ -16,7 +16,7 @@ export const setSnapshot = ({orderFeed, dispatch}: Params) => {
 
   const snapshot = {
     asks: mapLevels({levels: asks}),
-    bids: mapLevels({levels: asks}),
+    bids: mapLevels({levels: bids}),
   };
 
   dispatch({

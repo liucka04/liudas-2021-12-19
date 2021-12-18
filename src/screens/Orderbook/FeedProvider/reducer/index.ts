@@ -21,12 +21,10 @@ export const reducer = (
         asks: mergeLevels({
           stateLevels: state.asks as Level[],
           incomingLevels: action.delta.asks,
-          order: 'asc',
         }),
         bids: mergeLevels({
           stateLevels: state.bids as Level[],
           incomingLevels: action.delta.bids,
-          order: 'desc',
         }),
       };
     default:

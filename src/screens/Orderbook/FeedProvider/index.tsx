@@ -32,10 +32,6 @@ export const OrderFeedProvider: FC = ({children}) => {
 
     socket.onmessage = ({data}) => {
       const message = JSON.parse(data);
-      console.log(
-        '🚀 ~ file: index.tsx ~ line 35 ~ useEffect ~ message',
-        message,
-      );
 
       if (message.feed === MessageFeedType.DELTA) {
         return throttledSetDelta({dispatch, orderFeed: message});

@@ -1,12 +1,13 @@
 import {createContext} from 'react';
-import {OrderFeedContextType} from '../../types';
+import {OrderFeedContextType, ProductId} from '../../types';
 
 export const defaultContext: OrderFeedContextType = {
   asks: null,
   bids: null,
   isLoading: true,
   error: undefined,
-  feedProductIds: [],
+  isConnected: false,
+  productId: ProductId.XBTUSD,
   dispatch: () => {},
 };
 

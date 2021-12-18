@@ -1,26 +1,38 @@
 import {Dispatch} from 'react';
-import {Action, ActionType, Message} from '../../types';
+import {Action, ActionType, LevelType, Message} from '../../types';
 import {mapLevels} from './utils/mapLevels';
+import {mergeLevels} from './utils/mergeLevels';
 
 type Params = {
-  orderFeed: Message;
+  message: Message;
   dispatch: Dispatch<Action>;
 };
 
-export const setSnapshot = ({orderFeed, dispatch}: Params) => {
-  const {asks, bids} = orderFeed;
+export const setSnapshot = ({dispatch, message}: Params) => {
+  const {asks, bids} = message;
 
   if (!asks || !bids) {
     return;
   }
 
-  const snapshot = {
-    asks: mapLevels({levels: asks}),
-    bids: mapLevels({levels: bids}),
+  const formattedAsks = mapLevels({levels: asks});
+  const formattedBids = mapLevels({levels: bids});
+
+  const snapshotMessage = {
+    asks: mergeLevels({
+      incomingLevels: formattedAsks,
+      stateLevels: [],
+      type: LevelType.ASK,
+    }),
+    bids: mergeLevels({
+      incomingLevels: formattedBids,
+      stateLevels: [],
+      type: LevelType.BID,
+    }),
   };
 
   dispatch({
     type: ActionType.SET_SNAPSHOT,
-    snapshot,
+    snapshot: snapshotMessage,
   });
 };

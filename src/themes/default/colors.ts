@@ -11,7 +11,7 @@ export const colors = {
     500: '#128B61',
     800: '#123534',
   },
-  gray: '#bdc1c6',
+  gray: '#484E5C',
   white: '#ffffff',
   purple: '#574163',
 };

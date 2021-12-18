@@ -1,11 +1,9 @@
-import React, {FC, useEffect, useReducer, useRef, useState} from 'react';
-import {AppState} from 'react-native';
+import React, {FC, useReducer, useRef, useState} from 'react';
 import {defaultContext, OrderFeedContext} from './Context';
 import {reducer} from './reducer';
-import {unsubscribeProductEvent} from './utils/events';
 import {useConnection} from './hooks/useConnection';
 import {useMessages} from './hooks/useMessages';
-import {OrderbookAction} from './types/enums';
+import {useAppStatehandler} from './hooks/useAppStatehandler';
 
 export const OrderbookProvider: FC = ({children}) => {
   const socketRef = useRef(
@@ -15,29 +13,8 @@ export const OrderbookProvider: FC = ({children}) => {
   const [isConnected, setIsConnected] = useState(false);
   const {onMessage} = useMessages({dispatch, state});
 
+  useAppStatehandler({dispatch, socket: socketRef.current, state});
   useConnection({setIsConnected, socketRef});
-
-  useEffect(() => {
-    const appStateListener = AppState.addEventListener('change', appState => {
-      const productIds = [state.productId];
-      if (appState === 'background') {
-        socketRef.current.send(
-          unsubscribeProductEvent({
-            productIds,
-          }),
-        );
-
-        dispatch({
-          type: OrderbookAction.SET_CONNECTION_PAUSED,
-          isConnectionPaused: true,
-        });
-      }
-    });
-
-    return () => {
-      appStateListener.remove();
-    };
-  }, [state.productId]);
 
   socketRef.current.onmessage = onMessage;
 

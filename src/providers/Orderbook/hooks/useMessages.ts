@@ -1,11 +1,16 @@
 import {Dispatch} from 'react';
 import {throttledSetDelta} from '../actions/setDelta';
 import {setSnapshot} from '../actions/setSnapshot';
-import {Level, Message, OrderbookActionType, OrderFeedState} from '../types';
+import {
+  Level,
+  Message,
+  OrderbookActionType,
+  OrderbookContextState,
+} from '../types';
 import {MessageFeedType} from '../types/enums';
 
 type Params = {
-  state: OrderFeedState;
+  state: OrderbookContextState;
   dispatch: Dispatch<OrderbookActionType>;
 };
 

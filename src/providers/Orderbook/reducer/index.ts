@@ -1,10 +1,10 @@
-import {OrderbookActionType, OrderFeedState} from '../types';
+import {OrderbookActionType, OrderbookContextState} from '../types';
 import {OrderbookAction} from '../types/enums';
 
 export const reducer = (
-  state: OrderFeedState,
+  state: OrderbookContextState,
   action: OrderbookActionType,
-): OrderFeedState => {
+): OrderbookContextState => {
   switch (action.type) {
     case OrderbookAction.SET_LOADING:
       return {

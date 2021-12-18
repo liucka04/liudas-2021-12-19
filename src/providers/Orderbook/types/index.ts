@@ -17,7 +17,10 @@ export type OrderbookActionType =
   | ActionSetProductId
   | ActionSetPausedConnection;
 
-export type OrderFeedState = Omit<OrderFeedContextType, 'dispatch' | 'socket'>;
+export type OrderbookContextState = Omit<
+  OrderFeedContextType,
+  'dispatch' | 'socket'
+>;
 
 export type Message = {
   feed: 'book_ui_1';

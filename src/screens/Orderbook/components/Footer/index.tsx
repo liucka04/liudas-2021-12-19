@@ -8,7 +8,7 @@ export const OrderbookFooter = () => {
   const paddingBottom = insetBottom === 0 ? 20 : insetBottom;
 
   return (
-    <Box backgroundColor="blue.900" pt={5} style={{paddingBottom}}>
+    <Box backgroundColor="blue.900" pt={5} marginX={-6} style={{paddingBottom}}>
       <Button onPress={() => {}}>Toggle Feed</Button>
     </Box>
   );

@@ -42,5 +42,5 @@ export const mergeLevels = ({stateLevels, incomingLevels, type}: Params) => {
     };
   });
 
-  return _.take(levelsWithTotals, 8);
+  return _.take(levelsWithTotals, 20);
 };

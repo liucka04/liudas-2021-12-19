@@ -6,6 +6,7 @@ export const defaultTheme = {
   colors,
   fontWeights: {
     400: 400,
+    500: 500,
     700: 700,
   },
   fontSizes: {

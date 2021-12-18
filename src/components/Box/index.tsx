@@ -16,6 +16,8 @@ import {
   FlexboxProps,
   BorderProps,
   border,
+  position,
+  PositionProps,
 } from 'styled-system';
 import {DefaultTheme} from '~/themes/default';
 
@@ -26,6 +28,7 @@ type Props = LayoutProps<DefaultTheme> &
   MarginProps<DefaultTheme> &
   FlexboxProps<DefaultTheme> &
   BorderProps<DefaultTheme> &
+  PositionProps &
   PaddingProps<DefaultTheme>;
 
 export const Box = emotion.View<Props>`
@@ -37,6 +40,7 @@ export const Box = emotion.View<Props>`
   ${padding}
   ${flexbox}
   ${border}
+  ${position}
 `;
 
 export type StyledBoxProps = Props;

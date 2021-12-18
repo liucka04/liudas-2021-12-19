@@ -1,22 +1,22 @@
 import React, {FC, useEffect} from 'react';
 import {Box} from '~/components/Box';
 import {Screen} from '~/components/Screen';
+import {ScreenHeader} from '~/components/ScreenHeader';
+import {useOrderbookContext} from '~/providers/Orderbook/hooks/useFeedContext';
+import {useSubscribeProduct} from '~/providers/Orderbook/hooks/useSubscribeProduct';
+import {LevelType, ProductId} from '~/providers/Orderbook/types/enums';
 import {Error} from './components/Error';
 import {OrderbookFooter} from './components/Footer';
 import {List} from './components/List';
-import {ScreenHeader} from '~/components/ScreenHeader';
 import {OrderbookListHeader} from './components/ListHeader';
 import {OrderbookSpread} from './components/Spread';
-import {useFeedContext} from './FeedProvider/hooks/useFeedContext';
-import {LevelType, ProductId} from './types';
+import OrderbookSkeleton from './components/Skeleton';
+import {ResumeConnection} from './components/ResumeConnection';
 import {getSpread} from './utils/getSpread';
 import {getHighestTotal} from './utils/getHighestTotal';
-import OrderbookSkeleton from './components/Skeleton';
-import {useSubscribeProduct} from './FeedProvider/hooks/useSubscribeProduct';
-import {ResumeConnection} from './components/ResumeConnection';
 
 export const OrderbookScreen: FC = () => {
-  const {error, asks, bids, isLoading} = useFeedContext();
+  const {error, asks, bids, isLoading} = useOrderbookContext();
   const {subscribeProduct} = useSubscribeProduct();
 
   useEffect(

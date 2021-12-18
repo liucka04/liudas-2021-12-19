@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import {Dispatch} from 'react';
-import {Level} from '~/types';
-import {Action, ActionType, LevelType, Message} from '../../types';
+import {Level, Message, OrderbookActionType} from '../types';
+import {LevelType, OrderbookAction} from '../types/enums';
 import {mapLevels} from './utils/mapLevels';
 import {mergeLevels} from './utils/mergeLevels';
 
 type Params = {
   message: Message;
-  dispatch: Dispatch<Action>;
+  dispatch: Dispatch<OrderbookActionType>;
   stateAsks: Level[];
   stateBids: Level[];
 };
@@ -36,7 +36,7 @@ export const setDelta = ({message, stateAsks, stateBids, dispatch}: Params) => {
   };
 
   dispatch({
-    type: ActionType.SET_DELTA,
+    type: OrderbookAction.SET_DELTA,
     delta: deltaMessage,
   });
 };

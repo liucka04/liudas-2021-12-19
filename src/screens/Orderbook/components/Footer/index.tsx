@@ -2,7 +2,7 @@ import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Box} from '~/components/Box';
 import {Button} from '~/components/Button';
-import {useToggleProduct} from '../../FeedProvider/hooks/useToggleProduct';
+import {useToggleProduct} from '~/providers/Orderbook/hooks/useToggleProduct';
 
 export const OrderbookFooter = () => {
   const {bottom: insetBottom} = useSafeAreaInsets();

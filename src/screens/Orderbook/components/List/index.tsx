@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {Box} from '~/components/Box';
 import Text from '~/components/Text';
-import {Level} from '~/types';
-import {LevelType} from '../../types';
+import {Level} from '~/providers/Orderbook/types';
+import {LevelType} from '~/providers/Orderbook/types/enums';
 
 type Props = {
   items: Level[];

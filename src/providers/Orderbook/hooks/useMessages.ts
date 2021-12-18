@@ -1,12 +1,12 @@
 import {Dispatch} from 'react';
-import {Level} from '~/types';
-import {Action, Message, MessageFeedType, OrderFeedState} from '../../types';
 import {throttledSetDelta} from '../actions/setDelta';
 import {setSnapshot} from '../actions/setSnapshot';
+import {Level, Message, OrderbookActionType, OrderFeedState} from '../types';
+import {MessageFeedType} from '../types/enums';
 
 type Params = {
   state: OrderFeedState;
-  dispatch: Dispatch<Action>;
+  dispatch: Dispatch<OrderbookActionType>;
 };
 
 export const useMessages = ({state, dispatch}: Params) => {

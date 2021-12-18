@@ -1,33 +1,34 @@
-import {Action, ActionType, OrderFeedState} from '../../types';
+import {OrderbookActionType, OrderFeedState} from '../types';
+import {OrderbookAction} from '../types/enums';
 
 export const reducer = (
   state: OrderFeedState,
-  action: Action,
+  action: OrderbookActionType,
 ): OrderFeedState => {
   switch (action.type) {
-    case ActionType.SET_LOADING:
+    case OrderbookAction.SET_LOADING:
       return {
         ...state,
         isLoading: action.isLoading,
       };
-    case ActionType.SET_CONNECTION_PAUSED:
+    case OrderbookAction.SET_CONNECTION_PAUSED:
       return {
         ...state,
         isConnectionPaused: action.isConnectionPaused,
       };
-    case ActionType.SET_PRODUCT_ID:
+    case OrderbookAction.SET_PRODUCT_ID:
       return {
         ...state,
         productId: action.productId,
       };
-    case ActionType.SET_SNAPSHOT:
+    case OrderbookAction.SET_SNAPSHOT:
       return {
         ...state,
         asks: action.snapshot.asks,
         bids: action.snapshot.bids,
         isLoading: false,
       };
-    case ActionType.SET_DELTA:
+    case OrderbookAction.SET_DELTA:
       return {
         ...state,
         asks: action.delta.asks,

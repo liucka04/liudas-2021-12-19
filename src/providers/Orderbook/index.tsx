@@ -2,12 +2,12 @@ import React, {FC, useEffect, useReducer, useRef, useState} from 'react';
 import {AppState} from 'react-native';
 import {defaultContext, OrderFeedContext} from './Context';
 import {reducer} from './reducer';
-import {ActionType} from '../types';
 import {unsubscribeProductEvent} from './utils/events';
 import {useConnection} from './hooks/useConnection';
 import {useMessages} from './hooks/useMessages';
+import {OrderbookAction} from './types/enums';
 
-export const OrderFeedProvider: FC = ({children}) => {
+export const OrderbookProvider: FC = ({children}) => {
   const socketRef = useRef(
     new WebSocket('wss://www.cryptofacilities.com/ws/v1'),
   );
@@ -28,7 +28,7 @@ export const OrderFeedProvider: FC = ({children}) => {
         );
 
         dispatch({
-          type: ActionType.SET_CONNECTION_PAUSED,
+          type: OrderbookAction.SET_CONNECTION_PAUSED,
           isConnectionPaused: true,
         });
       }

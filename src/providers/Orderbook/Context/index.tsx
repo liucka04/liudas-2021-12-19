@@ -1,5 +1,6 @@
 import {createContext} from 'react';
-import {OrderFeedContextType, ProductId} from '../../types';
+import {OrderFeedContextType} from '../types';
+import {ProductId} from '../types/enums';
 
 export const defaultContext: OrderFeedContextType = {
   asks: null,

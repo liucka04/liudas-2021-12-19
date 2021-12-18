@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {Level} from '~/types';
+import {Level} from '~/providers/Orderbook/types';
 
 type Params = {
   asks: Level[];

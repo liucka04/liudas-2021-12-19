@@ -1,10 +1,10 @@
 import {useCallback} from 'react';
-import {ActionType, ProductId} from '../../types';
+import {OrderbookAction, ProductId} from '../types/enums';
 import {subscribeProductEvent} from '../utils/events';
-import {useFeedContext} from './useFeedContext';
+import {useOrderbookContext} from './useFeedContext';
 
 export const useSubscribeProduct = () => {
-  const {dispatch, socket, isConnected} = useFeedContext();
+  const {dispatch, socket, isConnected} = useOrderbookContext();
 
   const subscribeProduct = useCallback(
     ({productId}: {productId: ProductId}) => {
@@ -14,7 +14,7 @@ export const useSubscribeProduct = () => {
 
       socket.send(subscribeProductEvent({productIds: [productId]}));
       dispatch({
-        type: ActionType.SET_PRODUCT_ID,
+        type: OrderbookAction.SET_PRODUCT_ID,
         productId: productId,
       });
     },

@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import {LevelType} from '~/screens/Orderbook/types';
-import {Level} from '~/types';
+import {Level} from '../../types';
+import {LevelType} from '../../types/enums';
 import {getAboveItemSizes} from './getAboveItemSizes';
 
 type Params = {

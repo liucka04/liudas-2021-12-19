@@ -1,4 +1,4 @@
-import {ProductId} from '~/screens/Orderbook/types';
+import {ProductId} from '../types/enums';
 
 export const subscribeProductEvent = ({
   productIds,

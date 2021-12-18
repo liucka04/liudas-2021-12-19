@@ -2,18 +2,18 @@ import React from 'react';
 import {Box} from '~/components/Box';
 import {Button} from '~/components/Button';
 import Text from '~/components/Text';
-import {useFeedContext} from '../../FeedProvider/hooks/useFeedContext';
-import {useSubscribeProduct} from '../../FeedProvider/hooks/useSubscribeProduct';
-import {ActionType} from '../../types';
+import {useOrderbookContext} from '~/providers/Orderbook/hooks/useFeedContext';
+import {useSubscribeProduct} from '~/providers/Orderbook/hooks/useSubscribeProduct';
+import {OrderbookAction} from '~/providers/Orderbook/types/enums';
 
 export const ResumeConnection = () => {
-  const {dispatch, productId, isConnectionPaused} = useFeedContext();
+  const {dispatch, productId, isConnectionPaused} = useOrderbookContext();
   const {subscribeProduct} = useSubscribeProduct();
 
   const onPress = () => {
     subscribeProduct({productId});
     dispatch({
-      type: ActionType.SET_CONNECTION_PAUSED,
+      type: OrderbookAction.SET_CONNECTION_PAUSED,
       isConnectionPaused: false,
     });
   };

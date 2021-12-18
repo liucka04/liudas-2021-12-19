@@ -1,11 +1,12 @@
 import {Dispatch} from 'react';
-import {Action, ActionType, LevelType, Message} from '../../types';
+import {Message, OrderbookActionType} from '../types';
+import {LevelType, OrderbookAction} from '../types/enums';
 import {mapLevels} from './utils/mapLevels';
 import {mergeLevels} from './utils/mergeLevels';
 
 type Params = {
   message: Message;
-  dispatch: Dispatch<Action>;
+  dispatch: Dispatch<OrderbookActionType>;
 };
 
 export const setSnapshot = ({dispatch, message}: Params) => {
@@ -32,7 +33,7 @@ export const setSnapshot = ({dispatch, message}: Params) => {
   };
 
   dispatch({
-    type: ActionType.SET_SNAPSHOT,
+    type: OrderbookAction.SET_SNAPSHOT,
     snapshot: snapshotMessage,
   });
 };

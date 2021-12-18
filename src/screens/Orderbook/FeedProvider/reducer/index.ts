@@ -1,33 +1,32 @@
-import {Level} from '~/types';
-import {Action, ActionType, LevelType, OrderFeedState} from '../../types';
-import {mergeLevels} from './utils/mergeLevels';
+import {Action, ActionType, OrderFeedState} from '../../types';
 
 export const reducer = (
   state: OrderFeedState,
   action: Action,
 ): OrderFeedState => {
   switch (action.type) {
-    case ActionType.SET_SNAPSHOT:
-      const {asks, bids} = action.snapshot;
+    case ActionType.SET_LOADING:
       return {
         ...state,
-        asks,
-        bids,
+        isLoading: action.isLoading,
+      };
+    case ActionType.SET_PRODUCT_ID:
+      return {
+        ...state,
+        productId: action.productId,
+      };
+    case ActionType.SET_SNAPSHOT:
+      return {
+        ...state,
+        asks: action.snapshot.asks,
+        bids: action.snapshot.bids,
         isLoading: false,
       };
     case ActionType.SET_DELTA:
       return {
         ...state,
-        asks: mergeLevels({
-          stateLevels: state.asks as Level[],
-          incomingLevels: action.delta.asks,
-          type: LevelType.ASK,
-        }),
-        bids: mergeLevels({
-          stateLevels: state.bids as Level[],
-          incomingLevels: action.delta.bids,
-          type: LevelType.BID,
-        }),
+        asks: action.delta.asks,
+        bids: action.delta.bids,
       };
     default:
       return state;

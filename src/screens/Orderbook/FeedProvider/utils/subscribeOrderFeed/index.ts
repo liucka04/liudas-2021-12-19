@@ -6,7 +6,7 @@ export const subscribeOrderFeed = ({socket}: Params) => {
   const eventData = {
     event: 'subscribe',
     feed: 'book_ui_1',
-    product_ids: [ProducId.ETHUSD],
+    product_ids: [ProducId.XBTUSD],
   };
 
   socket.send(JSON.stringify(eventData));

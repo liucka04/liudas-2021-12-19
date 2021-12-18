@@ -1,5 +1,5 @@
 import {Level} from '~/types';
-import {Action, ActionType, OrderFeedState} from '../../types';
+import {Action, ActionType, LevelType, OrderFeedState} from '../../types';
 import {mergeLevels} from './utils/mergeLevels';
 
 export const reducer = (
@@ -21,10 +21,12 @@ export const reducer = (
         asks: mergeLevels({
           stateLevels: state.asks as Level[],
           incomingLevels: action.delta.asks,
+          type: LevelType.ASK,
         }),
         bids: mergeLevels({
           stateLevels: state.bids as Level[],
           incomingLevels: action.delta.bids,
+          type: LevelType.BID,
         }),
       };
     default:

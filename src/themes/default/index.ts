@@ -22,6 +22,11 @@ export const defaultTheme = {
     md: 16 * 1.6,
     lg: 18 * 1.6,
   },
+  borderWidths: {
+    0: 0,
+    1: 1,
+    2: 2,
+  },
 };
 
 export type DefaultTheme = typeof defaultTheme;

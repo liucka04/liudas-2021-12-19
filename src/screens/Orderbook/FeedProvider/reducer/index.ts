@@ -10,6 +10,11 @@ export const reducer = (
         ...state,
         isLoading: action.isLoading,
       };
+    case ActionType.SET_CONNECTION_PAUSED:
+      return {
+        ...state,
+        isConnectionPaused: action.isConnectionPaused,
+      };
     case ActionType.SET_PRODUCT_ID:
       return {
         ...state,

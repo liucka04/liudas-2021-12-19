@@ -13,6 +13,7 @@ import {getSpread} from './utils/getSpread';
 import {getHighestTotal} from './utils/getHighestTotal';
 import OrderbookSkeleton from './components/Skeleton';
 import {useSubscribeProduct} from './FeedProvider/hooks/useSubscribeProduct';
+import {ResumeConnection} from './components/ResumeConnection';
 
 export const OrderbookScreen: FC = () => {
   const {error, asks, bids, isLoading} = useFeedContext();
@@ -34,15 +35,18 @@ export const OrderbookScreen: FC = () => {
   const highestTotal = getHighestTotal({asks, bids});
 
   return (
-    <Screen>
-      <ScreenHeader title="Order Book" />
-      <OrderbookListHeader />
-      <Box flex={1}>
-        <List items={asks} type={LevelType.ASK} highestTotal={highestTotal} />
-        <OrderbookSpread spread={getSpread({asks, bids})} />
-        <List items={bids} type={LevelType.BID} highestTotal={highestTotal} />
-      </Box>
-      <OrderbookFooter />
-    </Screen>
+    <>
+      <Screen>
+        <ScreenHeader title="Order Book" />
+        <OrderbookListHeader />
+        <Box flex={1}>
+          <List items={asks} type={LevelType.ASK} highestTotal={highestTotal} />
+          <OrderbookSpread spread={getSpread({asks, bids})} />
+          <List items={bids} type={LevelType.BID} highestTotal={highestTotal} />
+        </Box>
+        <OrderbookFooter />
+      </Screen>
+      <ResumeConnection />
+    </>
   );
 };

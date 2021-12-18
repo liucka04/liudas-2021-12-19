@@ -14,4 +14,5 @@ export const colors = {
   gray: '#484E5C',
   white: '#ffffff',
   purple: '#574163',
+  'black-transparent-85': 'rgba(0, 0, 0, 0.85)',
 };

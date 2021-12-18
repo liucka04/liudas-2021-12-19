@@ -11,6 +11,7 @@ export type OrderFeedContextType = {
   error: undefined;
   isConnected: boolean;
   socket?: WebSocket;
+  isConnectionPaused: boolean;
   dispatch: Dispatch<Action>;
 };
 
@@ -21,7 +22,8 @@ export type Action =
     }
   | {type: ActionType.SET_DELTA; delta: {asks: Level[]; bids: Level[]}}
   | {type: ActionType.SET_LOADING; isLoading: boolean}
-  | {type: ActionType.SET_PRODUCT_ID; productId: ProductId};
+  | {type: ActionType.SET_PRODUCT_ID; productId: ProductId}
+  | {type: ActionType.SET_CONNECTION_PAUSED; isConnectionPaused: boolean};
 
 export type Message = {
   feed: 'book_ui_1';
@@ -40,6 +42,7 @@ export enum ActionType {
   SET_DELTA = 'SET_DELTA',
   SET_LOADING = 'SET_LOADING',
   SET_PRODUCT_ID = 'SET_PRODUCT_ID',
+  SET_CONNECTION_PAUSED = 'SET_CONNECTION_PAUSED',
 }
 
 export enum MessageFeedType {

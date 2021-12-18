@@ -10,12 +10,14 @@ type Params = {
 };
 
 export const mergeLevels = ({stateLevels, incomingLevels, type}: Params) => {
+  // find levels with matching prices for replacement
   const intersectingLevels = _.intersectionWith(
     incomingLevels,
     stateLevels,
     (a, b) => a.price === b.price,
   );
 
+  // remove old levels with mathing prices
   const stateWithoutIntersectingLevels = _.reject(stateLevels, stateLevel =>
     intersectingLevels.some(
       intersectingLevel => intersectingLevel.price === stateLevel.price,
@@ -24,7 +26,10 @@ export const mergeLevels = ({stateLevels, incomingLevels, type}: Params) => {
 
   const allLevels = [...stateWithoutIntersectingLevels, ...incomingLevels];
   const nonNegativeSizeLevels = allLevels.filter(level => level.size > 0);
-  const levelsWithTotals = nonNegativeSizeLevels.map((level, index) => {
+  const orderedLevels = _.orderBy(nonNegativeSizeLevels, ['price'], ['desc']);
+
+  // calculate total for each level
+  const levelsWithTotals = orderedLevels.map((level, index) => {
     return {
       ...level,
       total: _.sum(
@@ -37,5 +42,5 @@ export const mergeLevels = ({stateLevels, incomingLevels, type}: Params) => {
     };
   });
 
-  return _.take(_.orderBy(levelsWithTotals, ['price'], ['desc']), 8);
+  return _.take(levelsWithTotals, 8);
 };

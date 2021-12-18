@@ -8,6 +8,7 @@ export const defaultContext: OrderFeedContextType = {
   error: undefined,
   isConnected: false,
   productId: ProductId.XBTUSD,
+  isConnectionPaused: false,
   dispatch: () => {},
 };
 

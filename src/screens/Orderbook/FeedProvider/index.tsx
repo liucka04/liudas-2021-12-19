@@ -1,10 +1,11 @@
 import React, {FC, useEffect, useReducer, useRef, useState} from 'react';
-import {Level} from '~/types';
-import {throttledSetDelta} from './actions/setDelta';
-import {setSnapshot} from './actions/setSnapshot';
+import {AppState} from 'react-native';
 import {defaultContext, OrderFeedContext} from './Context';
 import {reducer} from './reducer';
-import {Message, MessageFeedType} from '../types';
+import {ActionType} from '../types';
+import {unsubscribeProductEvent} from './utils/events';
+import {useConnection} from './hooks/useConnection';
+import {useMessages} from './hooks/useMessages';
 
 export const OrderFeedProvider: FC = ({children}) => {
   const socketRef = useRef(
@@ -12,46 +13,31 @@ export const OrderFeedProvider: FC = ({children}) => {
   );
   const [state, dispatch] = useReducer(reducer, defaultContext);
   const [isConnected, setIsConnected] = useState(false);
+  const {onMessage} = useMessages({dispatch, state});
+
+  useConnection({setIsConnected, socketRef});
 
   useEffect(() => {
-    const {current: socket} = socketRef;
+    const appStateListener = AppState.addEventListener('change', appState => {
+      const productIds = [state.productId];
+      if (appState === 'background') {
+        socketRef.current.send(
+          unsubscribeProductEvent({
+            productIds,
+          }),
+        );
 
-    socket.onopen = () => {
-      setIsConnected(true);
-      if (__DEV__) {
-        console.log('[socket] connection established');
+        dispatch({
+          type: ActionType.SET_CONNECTION_PAUSED,
+          isConnectionPaused: true,
+        });
       }
+    });
+
+    return () => {
+      appStateListener.remove();
     };
-
-    socket.onclose = () => {
-      setIsConnected(false);
-      if (__DEV__) {
-        console.log('[socket] connection closed');
-      }
-    };
-
-    return () => socket.close();
-  }, [dispatch]);
-
-  const onMessage = ({data}: WebSocketMessageEvent) => {
-    const messageJson: Message = JSON.parse(data);
-
-    if (messageJson.feed === MessageFeedType.DELTA) {
-      return throttledSetDelta({
-        dispatch,
-        message: messageJson,
-        stateAsks: state.asks as Level[],
-        stateBids: state.bids as Level[],
-      });
-    }
-
-    if (messageJson.feed === MessageFeedType.SNAPSHOT) {
-      return setSnapshot({
-        dispatch,
-        message: messageJson,
-      });
-    }
-  };
+  }, [state.productId]);
 
   socketRef.current.onmessage = onMessage;
 

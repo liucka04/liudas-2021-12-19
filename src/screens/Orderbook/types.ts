@@ -40,3 +40,8 @@ export enum MessageFeedType {
   SNAPSHOT = 'book_ui_1_snapshot',
   DELTA = 'book_ui_1',
 }
+
+export enum LevelType {
+  BID = 'BID',
+  ASK = 'ASK',
+}

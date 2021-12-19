@@ -1,5 +1,5 @@
 import {getSpread} from '../getSpread';
-import {asks, bids, expectedPercentage, expectedSpreadValue} from './mocks';
+import {asks, bids, expectedPercentage, expectedSpreadValue} from '../mocks';
 
 it('should calculate spread value correctly', () => {
   const {percentage, value} = getSpread({asks, bids}) ?? {};

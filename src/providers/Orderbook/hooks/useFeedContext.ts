@@ -1,7 +1,7 @@
 import {useContext} from 'react';
-import {OrderFeedContext} from '../Context';
+import {OrderbookContext} from '../Context';
 
 export const useOrderbookContext = () => {
-  const context = useContext(OrderFeedContext);
+  const context = useContext(OrderbookContext);
   return context;
 };

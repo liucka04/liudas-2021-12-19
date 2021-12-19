@@ -17,7 +17,7 @@ export type OrderbookActionType =
   | ActionSetPausedConnection;
 
 export type OrderbookContextState = Omit<
-  OrderFeedContextType,
+  OrderbookContextType,
   'dispatch' | 'socket'
 >;
 
@@ -28,7 +28,7 @@ export type Message = {
   asks: [number, number][];
 };
 
-export type OrderFeedContextType = {
+export type OrderbookContextType = {
   productId: ProductId;
   asks: RawPriceLevel[] | null;
   bids: RawPriceLevel[] | null;

@@ -1,8 +1,8 @@
 import {createContext} from 'react';
-import {OrderFeedContextType} from '../types';
+import {OrderbookContextType} from '../types';
 import {ProductId} from '../types/enums';
 
-export const defaultContext: OrderFeedContextType = {
+export const defaultContext: OrderbookContextType = {
   asks: null,
   bids: null,
   isLoading: true,
@@ -13,5 +13,5 @@ export const defaultContext: OrderFeedContextType = {
   dispatch: () => {},
 };
 
-export const OrderFeedContext =
-  createContext<OrderFeedContextType>(defaultContext);
+export const OrderbookContext =
+  createContext<OrderbookContextType>(defaultContext);

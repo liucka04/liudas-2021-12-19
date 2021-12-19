@@ -1,5 +1,5 @@
 import React, {FC, useReducer, useRef, useState} from 'react';
-import {defaultContext, OrderFeedContext} from './Context';
+import {defaultContext, OrderbookContext} from './Context';
 import {orderbookReducer} from './reducer';
 import {useConnection} from './hooks/useConnection';
 import {useMessages} from './hooks/useMessages';
@@ -19,9 +19,9 @@ export const OrderbookProvider: FC = ({children}) => {
   socketRef.current.onmessage = onMessage;
 
   return (
-    <OrderFeedContext.Provider
+    <OrderbookContext.Provider
       value={{...state, isConnected, socket: socketRef.current, dispatch}}>
       {children}
-    </OrderFeedContext.Provider>
+    </OrderbookContext.Provider>
   );
 };

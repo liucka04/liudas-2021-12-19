@@ -8,21 +8,19 @@ type Props = {
   isDisabled?: boolean;
 };
 
+const PressableBox = Box.withComponent(Pressable);
+
 export const Button: FC<Props> = ({onPress, isDisabled, children}) => {
   return (
-    <Pressable onPress={isDisabled ? undefined : onPress} testID="button">
-      <Box
-        justifyContent="center"
-        alignItems="center"
-        opacity={isDisabled ? 0.5 : 1}>
-        <Box
-          backgroundColor="purple"
-          borderRadius="md"
-          paddingX={6}
-          paddingY={2}>
-          <Text fontWeight={700}>{children}</Text>
-        </Box>
+    <PressableBox
+      onPress={isDisabled ? undefined : onPress}
+      testID="button"
+      alignItems="center"
+      alignSelf="center"
+    >
+      <Box backgroundColor="purple" borderRadius="md" paddingX={6} paddingY={2}>
+        <Text fontWeight={700}>{children}</Text>
       </Box>
-    </Pressable>
+    </PressableBox>
   );
 };

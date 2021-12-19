@@ -4,6 +4,7 @@ import Text from '~/components/Text';
 import {Level} from '~/providers/Orderbook/types';
 import {LevelType} from '~/providers/Orderbook/types/enums';
 import {OrderbookListItemGraph} from './Graph';
+import {formatPrice} from './utils/formatPrice';
 
 type Props = {
   priceLevel: Level;
@@ -19,10 +20,10 @@ export const OrderbookListItem: FC<Props> = ({
   const {price, size, total} = priceLevel;
 
   const isBids = levelType === LevelType.BID;
-  const textColor = isBids ? 'green.500' : 'red.500';
+  const textColor = isBids ? 'green' : 'red';
 
   return (
-    <Box paddingY={1.5}>
+    <Box paddingY={1.5} testID="orderbook-list-item">
       <OrderbookListItemGraph
         highestTotal={highestTotal}
         total={total}
@@ -31,7 +32,7 @@ export const OrderbookListItem: FC<Props> = ({
       <Box flexDirection="row" justifyContent="space-between" paddingX={6}>
         <Box width={4 / 12} justifyContent="flex-end">
           <Text textAlign="right" fontWeight={700} color={textColor}>
-            {price.toFixed(2).toLocaleString()}
+            {formatPrice({price})}
           </Text>
         </Box>
         <Box width={3 / 12} justifyContent="flex-end">

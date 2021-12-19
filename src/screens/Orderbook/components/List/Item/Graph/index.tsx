@@ -12,7 +12,7 @@ export const OrderbookListItemGraph: FC<Props> = ({
   highestTotal,
   isBids,
 }) => {
-  const graphColor = isBids ? 'green.800' : 'red.800';
+  const graphColor = isBids ? 'green-800' : 'red-800';
 
   return (
     <Box
@@ -23,6 +23,7 @@ export const OrderbookListItemGraph: FC<Props> = ({
       position="absolute"
       width={total / highestTotal}
       backgroundColor={graphColor}
+      testID="orderbook-list-item-graph"
     />
   );
 };

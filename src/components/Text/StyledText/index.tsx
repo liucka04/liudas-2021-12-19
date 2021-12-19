@@ -2,6 +2,8 @@ import emotion from '@emotion/native';
 import {
   color,
   ColorProps,
+  fontSize,
+  FontSizeProps,
   FontWeightProps,
   lineHeight,
   LineHeightProps,
@@ -23,6 +25,7 @@ type Props = ColorProps<DefaultTheme> &
   SpaceProps<DefaultTheme> &
   TextAlignProps<DefaultTheme> &
   TextStyleProps<DefaultTheme> &
+  FontSizeProps &
   LineHeightProps<DefaultTheme>;
 
 export const StyledText = emotion.Text<Props>`
@@ -33,6 +36,7 @@ export const StyledText = emotion.Text<Props>`
   ${textAlign}
   ${lineHeight}
   ${textStyle}
+  ${fontSize}
 `;
 
 export type StyledTextProps = Props;

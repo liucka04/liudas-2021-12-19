@@ -1,16 +1,22 @@
+const red = {
+  red: '#B53235',
+  'red-800': '#3D1E28',
+};
+
+const blue = {
+  'blue-200': '#494f5d',
+  'blue-900': '#131723',
+};
+
+const green = {
+  green: '#128B61',
+  'green-800': '#123534',
+};
+
 export const colors = {
-  blue: {
-    200: '#494f5d',
-    900: '#131723',
-  },
-  red: {
-    500: '#B53235',
-    800: '#3D1E28',
-  },
-  green: {
-    500: '#128B61',
-    800: '#123534',
-  },
+  ...red,
+  ...blue,
+  ...green,
   gray: '#484E5C',
   white: '#ffffff',
   purple: '#574163',

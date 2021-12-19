@@ -39,7 +39,7 @@ export const Screen: FC<Props> = ({
         edges={safeAreaEdges}
         flex={1}
         paddingX={6}
-        backgroundColor="blue.900"
+        backgroundColor="blue-900"
         {...restProps}>
         {children}
       </StyledSafeAreaView>

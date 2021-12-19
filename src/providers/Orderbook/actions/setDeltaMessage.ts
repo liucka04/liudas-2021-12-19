@@ -12,14 +12,19 @@ type Params = {
   stateBids: RawPriceLevel[];
 };
 
-export const setDelta = ({message, stateAsks, stateBids, dispatch}: Params) => {
+export const setDeltaMessage = ({
+  message,
+  stateAsks,
+  stateBids,
+  dispatch,
+}: Params) => {
   const {asks, bids} = message;
 
   if (!asks || !bids) {
     return;
   }
 
-  const deltaMessage = {
+  const priceLevels = {
     asks: mergeLevels({
       incomingLevels: mapLevels({levels: asks}),
       stateLevels: stateAsks,
@@ -31,9 +36,9 @@ export const setDelta = ({message, stateAsks, stateBids, dispatch}: Params) => {
   };
 
   dispatch({
-    type: OrderbookAction.SET_DELTA,
-    delta: deltaMessage,
+    type: OrderbookAction.SET_PRICE_LEVELS,
+    priceLevels,
   });
 };
 
-export const throttledSetDelta = _.throttle(setDelta, 500);
+export const throttledSetDeltaMessage = _.throttle(setDeltaMessage, 500);

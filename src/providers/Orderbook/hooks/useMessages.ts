@@ -1,6 +1,6 @@
 import {Dispatch} from 'react';
-import {throttledSetDelta} from '../actions/setDelta';
-import {setSnapshot} from '../actions/setSnapshot';
+import {throttledSetDeltaMessage} from '../actions/setDeltaMessage';
+import {setSnapshotMessage} from '../actions/setSnapshotMessage';
 import {
   Message,
   OrderbookActionType,
@@ -19,7 +19,7 @@ export const useMessages = ({state, dispatch}: Params) => {
     const messageJson: Message = JSON.parse(data);
 
     if (messageJson.feed === MessageFeedType.DELTA) {
-      return throttledSetDelta({
+      return throttledSetDeltaMessage({
         dispatch,
         message: messageJson,
         stateAsks: state.asks as RawPriceLevel[],
@@ -28,7 +28,7 @@ export const useMessages = ({state, dispatch}: Params) => {
     }
 
     if (messageJson.feed === MessageFeedType.SNAPSHOT) {
-      return setSnapshot({
+      return setSnapshotMessage({
         dispatch,
         message: messageJson,
       });

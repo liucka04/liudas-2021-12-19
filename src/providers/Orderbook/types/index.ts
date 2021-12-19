@@ -1,10 +1,9 @@
 import {Dispatch} from 'react';
 import {
-  ActionSetDelta,
+  ActionSetPriceLevels,
   ActionSetLoading,
   ActionSetPausedConnection,
   ActionSetProductId,
-  ActionSetSnapshot,
 } from './actions';
 import {ProductId} from './enums';
 
@@ -12,8 +11,7 @@ export type RawPriceLevel = {price: number; size: number};
 export type PriceLevel = {total: number} & RawPriceLevel;
 
 export type OrderbookActionType =
-  | ActionSetSnapshot
-  | ActionSetDelta
+  | ActionSetPriceLevels
   | ActionSetLoading
   | ActionSetProductId
   | ActionSetPausedConnection;

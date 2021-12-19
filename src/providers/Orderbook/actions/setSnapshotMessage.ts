@@ -9,7 +9,7 @@ type Params = {
   dispatch: Dispatch<OrderbookActionType>;
 };
 
-export const setSnapshot = ({dispatch, message}: Params) => {
+export const setSnapshotMessage = ({dispatch, message}: Params) => {
   const {asks, bids} = message;
 
   if (!asks || !bids) {
@@ -17,10 +17,15 @@ export const setSnapshot = ({dispatch, message}: Params) => {
   }
 
   dispatch({
-    type: OrderbookAction.SET_SNAPSHOT,
-    snapshot: {
+    type: OrderbookAction.SET_PRICE_LEVELS,
+    priceLevels: {
       asks: trimPriceLevels({priceLevels: mapLevels({levels: asks})}),
       bids: trimPriceLevels({priceLevels: mapLevels({levels: bids})}),
     },
+  });
+
+  dispatch({
+    type: OrderbookAction.SET_LOADING,
+    isLoading: false,
   });
 };

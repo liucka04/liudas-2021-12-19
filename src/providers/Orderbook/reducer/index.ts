@@ -1,7 +1,7 @@
 import {OrderbookActionType, OrderbookContextState} from '../types';
 import {OrderbookAction} from '../types/enums';
 
-export const reducer = (
+export const orderbookReducer = (
   state: OrderbookContextState,
   action: OrderbookActionType,
 ): OrderbookContextState => {
@@ -21,18 +21,11 @@ export const reducer = (
         ...state,
         productId: action.productId,
       };
-    case OrderbookAction.SET_SNAPSHOT:
+    case OrderbookAction.SET_PRICE_LEVELS:
       return {
         ...state,
-        asks: action.snapshot.asks,
-        bids: action.snapshot.bids,
-        isLoading: false,
-      };
-    case OrderbookAction.SET_DELTA:
-      return {
-        ...state,
-        asks: action.delta.asks,
-        bids: action.delta.bids,
+        asks: action.priceLevels.asks,
+        bids: action.priceLevels.bids,
       };
     default:
       return state;

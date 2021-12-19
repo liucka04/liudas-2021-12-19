@@ -13,10 +13,10 @@ export const getPriceLevelItemSizes = ({
   priceLevelType,
   itemIndex,
 }: Params) => {
-  const aboveItems =
+  const aboveOrBelowItems =
     priceLevelType === LevelType.BID
       ? _.take(items, itemIndex + 1)
       : _.takeRight(items, items.length - itemIndex);
 
-  return aboveItems.map(item => item.size);
+  return aboveOrBelowItems.map(item => item.size);
 };

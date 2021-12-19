@@ -18,7 +18,6 @@ export const OrderbookListItem: FC<Props> = ({
   levelType,
 }) => {
   const {price, size, total} = priceLevel;
-
   const isBids = levelType === PriceLevelType.BID;
   const textColor = isBids ? 'green' : 'red';
 

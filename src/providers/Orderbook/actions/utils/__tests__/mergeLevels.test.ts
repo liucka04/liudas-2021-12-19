@@ -15,16 +15,20 @@ const incomingLevels: RawPriceLevel[] = [
   {price: 999, size: 1000},
 ];
 
-const expectedResult = [
-  {price: 123123, size: 32323},
-  {price: 12512, size: 124},
-  {price: 12312, size: 5212},
-  {price: 999, size: 1000},
-  {price: 150, size: 2000},
-];
-
 it('should replace state levels with incoming levels if price matches, sort DESC and remove levels with size of 0', () => {
-  const result = mergePriceLevels({incomingLevels, stateLevels: stateLevels});
+  const expectedResult = [
+    {price: 123123, size: 32323},
+    {price: 12512, size: 124},
+    {price: 12312, size: 5212},
+    {price: 999, size: 1000},
+    {price: 150, size: 2000},
+  ];
 
-  expect(_.isEqual(result, expectedResult)).toBeTruthy();
+  const {priceLevels, skipDispatch} = mergePriceLevels({
+    incomingLevels,
+    stateLevels: stateLevels,
+  });
+
+  expect(skipDispatch).toBeFalsy();
+  expect(_.isEqual(priceLevels, expectedResult)).toBeTruthy();
 });

@@ -15,7 +15,11 @@ const getThrottleTime = async () => {
     return 1500;
   }
 
-  if (memoryGb < 8 || isAndroid) {
+  if (isAndroid) {
+    return 1250;
+  }
+
+  if (memoryGb < 8) {
     return 1000;
   }
 

@@ -10,6 +10,7 @@ const props = {
 let renderedList: RenderAPI;
 
 beforeEach(() => {
+  props.onPress.mockClear();
   renderedList = render(<Button {...props} />);
 });
 
@@ -26,4 +27,16 @@ it('should call onPress prop on click', () => {
   fireEvent(button, 'press');
 
   expect(props.onPress).toHaveBeenCalledTimes(1);
+});
+
+it('should not call onPress when disabled', () => {
+  const updatedProps = {
+    ...props,
+    isDisabled: true,
+  };
+  const {getByTestId} = render(<Button {...updatedProps} />);
+  const button = getByTestId('button');
+  fireEvent(button, 'press');
+
+  expect(props.onPress).toHaveBeenCalledTimes(0);
 });

@@ -1,14 +1,14 @@
-import {Level} from '~/providers/Orderbook/types';
+import {RawPriceLevel} from '~/providers/Orderbook/types';
 import {OrderbookAction, ProductId} from './enums';
 
 export type ActionSetSnapshot = {
   type: OrderbookAction.SET_SNAPSHOT;
-  snapshot: {asks: Level[]; bids: Level[]};
+  snapshot: {asks: RawPriceLevel[]; bids: RawPriceLevel[]};
 };
 
 export type ActionSetDelta = {
   type: OrderbookAction.SET_DELTA;
-  delta: {asks: Level[]; bids: Level[]};
+  delta: {asks: RawPriceLevel[]; bids: RawPriceLevel[]};
 };
 
 export type ActionSetLoading = {

@@ -2,10 +2,10 @@ import {Dispatch} from 'react';
 import {throttledSetDelta} from '../actions/setDelta';
 import {setSnapshot} from '../actions/setSnapshot';
 import {
-  Level,
   Message,
   OrderbookActionType,
   OrderbookContextState,
+  RawPriceLevel,
 } from '../types';
 import {MessageFeedType} from '../types/enums';
 
@@ -22,8 +22,8 @@ export const useMessages = ({state, dispatch}: Params) => {
       return throttledSetDelta({
         dispatch,
         message: messageJson,
-        stateAsks: state.asks as Level[],
-        stateBids: state.bids as Level[],
+        stateAsks: state.asks as RawPriceLevel[],
+        stateBids: state.bids as RawPriceLevel[],
       });
     }
 

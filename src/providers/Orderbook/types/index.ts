@@ -8,7 +8,8 @@ import {
 } from './actions';
 import {ProductId} from './enums';
 
-export type Level = {price: number; size: number; total: number};
+export type RawPriceLevel = {price: number; size: number};
+export type PriceLevel = {total: number} & RawPriceLevel;
 
 export type OrderbookActionType =
   | ActionSetSnapshot
@@ -31,8 +32,8 @@ export type Message = {
 
 export type OrderFeedContextType = {
   productId: ProductId;
-  asks: Level[] | null;
-  bids: Level[] | null;
+  asks: RawPriceLevel[] | null;
+  bids: RawPriceLevel[] | null;
   isLoading: boolean;
   error: undefined;
   isConnected: boolean;

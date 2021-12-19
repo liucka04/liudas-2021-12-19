@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import {Dispatch} from 'react';
-import {Level, Message, OrderbookActionType} from '../types';
+import {RawPriceLevel, Message, OrderbookActionType} from '../types';
 import {OrderbookAction} from '../types/enums';
 import {mapLevels} from './utils/mapLevels';
 import {mergeLevels} from './utils/mergeLevels';
@@ -8,8 +8,8 @@ import {mergeLevels} from './utils/mergeLevels';
 type Params = {
   message: Message;
   dispatch: Dispatch<OrderbookActionType>;
-  stateAsks: Level[];
-  stateBids: Level[];
+  stateAsks: RawPriceLevel[];
+  stateBids: RawPriceLevel[];
 };
 
 export const setDelta = ({message, stateAsks, stateBids, dispatch}: Params) => {

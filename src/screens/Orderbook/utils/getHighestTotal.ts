@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import {Level} from '~/providers/Orderbook/types';
+import {PriceLevel} from '~/providers/Orderbook/types';
 
 type Params = {
-  asks: Level[];
-  bids: Level[];
+  asks: PriceLevel[];
+  bids: PriceLevel[];
 };
 
 export const getHighestTotal = ({asks, bids}: Params) => {

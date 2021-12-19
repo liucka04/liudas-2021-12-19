@@ -7,7 +7,6 @@ export const mapLevels = ({levels}: Params) => {
     return {
       price,
       size,
-      total: 0,
     };
   });
 

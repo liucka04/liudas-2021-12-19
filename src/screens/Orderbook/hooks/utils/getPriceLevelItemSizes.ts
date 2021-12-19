@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import {Level} from '~/providers/Orderbook/types';
+import {PriceLevel} from '~/providers/Orderbook/types';
 import {LevelType} from '~/providers/Orderbook/types/enums';
 
 type Params = {
-  items: Level[];
+  items: PriceLevel[];
   priceLevelType: LevelType;
   itemIndex: number;
 };

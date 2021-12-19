@@ -1,13 +1,13 @@
 import React, {FC} from 'react';
 import {Box} from '~/components/Box';
 import Text from '~/components/Text';
-import {Level} from '~/providers/Orderbook/types';
+import {PriceLevel} from '~/providers/Orderbook/types';
 import {LevelType} from '~/providers/Orderbook/types/enums';
 import {OrderbookListItemGraph} from './Graph';
 import {formatPrice} from './utils/formatPrice';
 
 type Props = {
-  priceLevel: Level;
+  priceLevel: PriceLevel;
   highestTotal: number;
   levelType: LevelType;
 };

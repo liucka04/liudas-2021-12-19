@@ -1,9 +1,10 @@
 import _ from 'lodash';
-import {Level} from '../../types';
+import {RawPriceLevel} from '../../types';
+import {trimPriceLevels} from './trimPriceLevels';
 
 type Params = {
-  stateLevels: Level[];
-  incomingLevels: Level[];
+  stateLevels: RawPriceLevel[];
+  incomingLevels: RawPriceLevel[];
 };
 
 export const mergeLevels = ({stateLevels, incomingLevels}: Params) => {
@@ -29,6 +30,5 @@ export const mergeLevels = ({stateLevels, incomingLevels}: Params) => {
     ['desc'],
   );
 
-  // limit levels list size to 20 so it doesn't get bloated
-  return _.take(orderedLevels, 20);
+  return trimPriceLevels({priceLevels: orderedLevels});
 };

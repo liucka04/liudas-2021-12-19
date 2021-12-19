@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import {Level} from '~/providers/Orderbook/types';
+import {PriceLevel} from '~/providers/Orderbook/types';
 
 type GetSpreadParams = {
-  bids: Level[];
-  asks: Level[];
+  bids: PriceLevel[];
+  asks: PriceLevel[];
 };
 
 type GetPercentageParams = {

@@ -3,7 +3,7 @@ import {Box} from '~/components/Box';
 import Text from '~/components/Text';
 
 type Props = {
-  spread: {value: string; percentage: number} | null;
+  spread: {value: string; percentage: string} | null;
 };
 
 export const OrderbookSpread: FC<Props> = ({spread}) => {

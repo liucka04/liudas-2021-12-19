@@ -1,4 +1,7 @@
+import {Platform} from 'react-native';
 import {getTotalMemory} from 'react-native-device-info';
+
+const isAndroid = Platform.OS === 'android';
 
 const bytesToGigaBytes = ({bytes}: {bytes: number}) => {
   return Math.round(bytes * 1000000000);
@@ -12,7 +15,7 @@ const getThrottleTime = async () => {
     return 1500;
   }
 
-  if (memoryGb < 8) {
+  if (memoryGb < 8 || isAndroid) {
     return 1000;
   }
 

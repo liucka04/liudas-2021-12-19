@@ -24,7 +24,7 @@ export const getSpread = ({bids, asks}: GetSpreadParams) => {
   if (highestBidPrice && highestAskPrice) {
     const spreadValue = Math.abs(highestBidPrice - highestAskPrice);
     return {
-      value: _.round(spreadValue, 1).toLocaleString(),
+      value: _.round(spreadValue, 1).toFixed(1).toLocaleString(),
       percentage: getPercentage({highestBidPrice, spreadValue}),
     };
   } else {

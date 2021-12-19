@@ -13,10 +13,12 @@ import {OrderbookSpread} from './components/Spread';
 import OrderbookSkeleton from './components/Skeleton';
 import {ResumeConnection} from './components/ResumeConnection';
 import {getSpread} from './utils/getSpread';
+import {usePriceLevelTotals} from './hooks/usePriceLevelTotals';
 import {getHighestTotal} from './utils/getHighestTotal';
 
 export const OrderbookScreen: FC = () => {
-  const {error, asks, bids, isLoading} = useOrderbookContext();
+  const {error, isLoading} = useOrderbookContext();
+  const {asks, bids} = usePriceLevelTotals();
   const {subscribeProduct} = useSubscribeProduct();
 
   useEffect(
@@ -28,11 +30,14 @@ export const OrderbookScreen: FC = () => {
     return <OrderbookSkeleton />;
   }
 
-  if (error || !bids || !asks) {
+  if (error || !asks || !bids) {
     return <Error />;
   }
 
-  const highestTotal = getHighestTotal({asks, bids});
+  const highestTotal = getHighestTotal({
+    asks: asks,
+    bids: bids,
+  });
 
   return (
     <>

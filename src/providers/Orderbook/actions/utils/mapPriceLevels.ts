@@ -1,6 +1,6 @@
 type Params = {levels: [number, number][]};
 
-export const mapLevels = ({levels}: Params) => {
+export const mapPriceLevels = ({levels}: Params) => {
   const mappedLevels = levels.map(level => {
     const [price, size] = level;
 

@@ -9,6 +9,10 @@ type Props = {
 export const OrderbookSpread: FC<Props> = ({spread}) => {
   const {value, percentage} = spread ?? {};
 
+  if (!value) {
+    return null;
+  }
+
   return (
     <Box paddingY={2} alignItems="center">
       <Text color="gray" fontWeight={500}>

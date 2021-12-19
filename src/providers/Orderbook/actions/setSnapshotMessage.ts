@@ -1,7 +1,7 @@
 import {Dispatch} from 'react';
 import {Message, OrderbookActionType} from '../types';
 import {OrderbookAction} from '../types/enums';
-import {mapLevels} from './utils/mapLevels';
+import {mapPriceLevels} from './utils/mapPriceLevels';
 import {trimPriceLevels} from './utils/trimPriceLevels';
 
 type Params = {
@@ -19,8 +19,8 @@ export const setSnapshotMessage = ({dispatch, message}: Params) => {
   dispatch({
     type: OrderbookAction.SET_PRICE_LEVELS,
     priceLevels: {
-      asks: trimPriceLevels({priceLevels: mapLevels({levels: asks})}),
-      bids: trimPriceLevels({priceLevels: mapLevels({levels: bids})}),
+      asks: trimPriceLevels({priceLevels: mapPriceLevels({levels: asks})}),
+      bids: trimPriceLevels({priceLevels: mapPriceLevels({levels: bids})}),
     },
   });
 

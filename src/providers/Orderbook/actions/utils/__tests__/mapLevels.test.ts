@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {mapLevels} from '../mapLevels';
+import {mapPriceLevels} from '../mapPriceLevels';
 
 const priceLevels: [number, number][] = [
   [150, 123],
@@ -16,6 +16,6 @@ const expectedResult = [
 ];
 
 it('should correctly map data', () => {
-  const result = mapLevels({levels: priceLevels});
+  const result = mapPriceLevels({levels: priceLevels});
   expect(_.isEqual(result, expectedResult)).toBeTruthy();
 });

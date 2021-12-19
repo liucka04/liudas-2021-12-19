@@ -7,7 +7,7 @@ type Params = {
   incomingLevels: RawPriceLevel[];
 };
 
-export const mergeLevels = ({stateLevels, incomingLevels}: Params) => {
+export const mergePriceLevels = ({stateLevels, incomingLevels}: Params) => {
   // find levels with matching prices for replacement
   const intersectingLevels = _.intersectionWith(
     incomingLevels,

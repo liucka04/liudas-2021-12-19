@@ -1,8 +1,8 @@
 import {Dispatch} from 'react';
 import {RawPriceLevel, Message, OrderbookActionType} from '../types';
 import {OrderbookAction} from '../types/enums';
-import {mapLevels} from './utils/mapLevels';
-import {mergeLevels} from './utils/mergeLevels';
+import {mapPriceLevels} from './utils/mapPriceLevels';
+import {mergePriceLevels} from './utils/mergePriceLevels';
 
 type Params = {
   message: Message;
@@ -24,12 +24,12 @@ export const setDeltaMessage = ({
   }
 
   const priceLevels = {
-    asks: mergeLevels({
-      incomingLevels: mapLevels({levels: asks}),
+    asks: mergePriceLevels({
+      incomingLevels: mapPriceLevels({levels: asks}),
       stateLevels: stateAsks,
     }),
-    bids: mergeLevels({
-      incomingLevels: mapLevels({levels: bids}),
+    bids: mergePriceLevels({
+      incomingLevels: mapPriceLevels({levels: bids}),
       stateLevels: stateBids,
     }),
   };

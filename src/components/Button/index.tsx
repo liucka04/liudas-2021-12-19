@@ -9,7 +9,7 @@ type Props = {
 
 export const Button: FC<Props> = ({onPress, children}) => {
   return (
-    <Pressable onPress={onPress}>
+    <Pressable onPress={onPress} testID="button">
       <Box justifyContent="center" alignItems="center">
         <Box
           backgroundColor="purple"

@@ -13,7 +13,7 @@ type Params = {
 export const setBids = ({message, stateBids, dispatch}: Params) => {
   const {bids} = message;
 
-  if (!bids) {
+  if (!bids || bids.length === 0) {
     return;
   }
 

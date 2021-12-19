@@ -13,7 +13,7 @@ type Params = {
 export const setAsks = ({message, stateAsks, dispatch}: Params) => {
   const {asks} = message;
 
-  if (!asks) {
+  if (!asks || asks.length === 0) {
     return;
   }
 

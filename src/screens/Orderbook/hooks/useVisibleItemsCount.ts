@@ -3,9 +3,9 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const HEADER_HEIGHT = 38;
 const LIST_HEADER_HEIGHT = 33;
-const SPREAD_HEIGHT = 35;
+export const SPREAD_HEIGHT = 35;
 const FOOTER_HEIGHT = 75;
-const LEVEL_ITEM_HEIGHT = 32;
+export const LEVEL_ITEM_HEIGHT = 32;
 const NUMBER_OF_LISTS_IN_SCREEN = 2;
 
 const {height: screenHeight} = Dimensions.get('window');

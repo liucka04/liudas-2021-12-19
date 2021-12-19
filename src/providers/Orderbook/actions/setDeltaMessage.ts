@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {Dispatch} from 'react';
 import {RawPriceLevel, Message, OrderbookActionType} from '../types';
 import {OrderbookAction} from '../types/enums';
@@ -40,5 +39,3 @@ export const setDeltaMessage = ({
     priceLevels,
   });
 };
-
-export const throttledSetDeltaMessage = _.throttle(setDeltaMessage, 500);

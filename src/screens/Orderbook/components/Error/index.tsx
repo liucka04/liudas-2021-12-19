@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Box} from '~/components/Box';
 import Text from '~/components/Text';
 
-export const Error = () => {
+type Props = {
+  errorMessage?: string;
+};
+
+export const Error: FC<Props> = ({errorMessage = 'Something went wrong'}) => {
   return (
     <Box flex={1} justifyContent="center" alignItems="center">
-      <Text>Something went wrong</Text>
+      <Text>{errorMessage}</Text>
     </Box>
   );
 };

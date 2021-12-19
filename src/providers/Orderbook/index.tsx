@@ -6,9 +6,7 @@ import {useMessages} from './hooks/useMessages';
 import {useAppStatehandler} from './hooks/useAppStatehandler';
 
 export const OrderbookProvider: FC = ({children}) => {
-  const socketRef = useRef(
-    new WebSocket('wss://www.cryptofacilities.com/ws/v1'),
-  );
+  const socketRef = useRef(new WebSocket(process.env.SOCKET_URL));
   const [state, dispatch] = useReducer(orderbookReducer, defaultContext);
   const [isConnected, setIsConnected] = useState(false);
   const {onMessage} = useMessages({dispatch, state});

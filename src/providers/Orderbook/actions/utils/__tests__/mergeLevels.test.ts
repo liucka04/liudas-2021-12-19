@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import {RawPriceLevel} from '~/providers/Orderbook/types';
-import {mergeLevels} from '../mergeLevels';
+import {mergePriceLevels} from '../mergePriceLevels';
 
 const stateLevels = [
   {price: 150, size: 123},
@@ -24,7 +24,7 @@ const expectedResult = [
 ];
 
 it('should replace state levels with incoming levels if price matches, sort DESC and remove levels with size of 0', () => {
-  const result = mergeLevels({incomingLevels, stateLevels: stateLevels});
+  const result = mergePriceLevels({incomingLevels, stateLevels: stateLevels});
 
   expect(_.isEqual(result, expectedResult)).toBeTruthy();
 });

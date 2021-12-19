@@ -6,6 +6,16 @@ export type ActionSetPriceLevels = {
   priceLevels: {asks: RawPriceLevel[]; bids: RawPriceLevel[]};
 };
 
+export type ActionSetAsks = {
+  type: OrderbookAction.SET_ASKS;
+  asks: RawPriceLevel[];
+};
+
+export type ActionSetBids = {
+  type: OrderbookAction.SET_BIDS;
+  bids: RawPriceLevel[];
+};
+
 export type ActionSetLoading = {
   type: OrderbookAction.SET_LOADING;
   isLoading: boolean;

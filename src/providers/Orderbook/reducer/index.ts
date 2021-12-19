@@ -27,6 +27,16 @@ export const orderbookReducer = (
         asks: action.priceLevels.asks,
         bids: action.priceLevels.bids,
       };
+    case OrderbookAction.SET_ASKS:
+      return {
+        ...state,
+        asks: action.asks,
+      };
+    case OrderbookAction.SET_BIDS:
+      return {
+        ...state,
+        bids: action.bids,
+      };
     default:
       return state;
   }

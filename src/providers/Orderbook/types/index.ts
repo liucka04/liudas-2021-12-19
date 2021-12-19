@@ -4,6 +4,8 @@ import {
   ActionSetLoading,
   ActionSetPausedConnection,
   ActionSetProductId,
+  ActionSetBids,
+  ActionSetAsks,
 } from './actions';
 import {ProductId} from './enums';
 
@@ -12,6 +14,8 @@ export type PriceLevel = {total: number} & RawPriceLevel;
 
 export type OrderbookActionType =
   | ActionSetPriceLevels
+  | ActionSetBids
+  | ActionSetAsks
   | ActionSetLoading
   | ActionSetProductId
   | ActionSetPausedConnection;

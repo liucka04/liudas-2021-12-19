@@ -30,5 +30,18 @@ export const mergePriceLevels = ({stateLevels, incomingLevels}: Params) => {
     ['desc'],
   );
 
-  return trimPriceLevels({priceLevels: orderedLevels});
+  const priceLevels = trimPriceLevels({priceLevels: orderedLevels});
+
+  // if states are equal, no need to rerender
+  if (_.isEqual(priceLevels, stateLevels)) {
+    return {
+      skipDispatch: true,
+      priceLevels: [],
+    };
+  }
+
+  return {
+    skipDispatch: false,
+    priceLevels,
+  };
 };

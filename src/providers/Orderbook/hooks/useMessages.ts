@@ -1,11 +1,6 @@
 import {Dispatch} from 'react';
 import {setSnapshotMessage} from '../actions/setSnapshotMessage';
-import {
-  Message,
-  OrderbookActionType,
-  OrderbookContextState,
-  RawPriceLevel,
-} from '../types';
+import {Message, OrderbookActionType, OrderbookContextState} from '../types';
 import {MessageFeedType} from '../types/enums';
 import {useThrottle} from './useThrottle';
 
@@ -15,22 +10,29 @@ type Params = {
 };
 
 export const useMessages = ({state, dispatch}: Params) => {
-  const {throttledSetDeltaMessage} = useThrottle();
+  const {throttledSetAsks, throttledSetBids} = useThrottle();
 
   const onMessage = ({data}: WebSocketMessageEvent) => {
     const messageJson: Message = JSON.parse(data);
 
     if (messageJson.feed === MessageFeedType.DELTA) {
-      if (!throttledSetDeltaMessage) {
+      if (!throttledSetAsks || !throttledSetBids) {
         return;
       }
 
-      return throttledSetDeltaMessage({
+      throttledSetAsks({
         dispatch,
         message: messageJson,
-        stateAsks: state.asks as RawPriceLevel[],
-        stateBids: state.bids as RawPriceLevel[],
+        stateAsks: state.asks ?? [],
       });
+
+      throttledSetBids({
+        dispatch,
+        message: messageJson,
+        stateBids: state.bids ?? [],
+      });
+
+      return;
     }
 
     if (messageJson.feed === MessageFeedType.SNAPSHOT) {

@@ -2,13 +2,13 @@ import 'react-native';
 import React from 'react';
 import {render, RenderAPI} from '@testing-library/react-native';
 import {OrderbookListItem} from '../index';
-import {LevelType} from '~/providers/Orderbook/types/enums';
+import {PriceLevelType} from '~/providers/Orderbook/types/enums';
 import {formatPrice} from '../utils/formatPrice';
 
 const props = {
   priceLevel: {price: 100.5, size: 3222, total: 14124124},
   highestTotal: 10000,
-  levelType: LevelType.BID,
+  levelType: PriceLevelType.BID,
 };
 
 let renderedList: RenderAPI;
@@ -27,7 +27,7 @@ it('should have GREEN text in first column when item type is BID', () => {
 it('should have RED text in first column when item type is ASK', () => {
   const updatedProps = {
     ...props,
-    levelType: LevelType.ASK,
+    levelType: PriceLevelType.ASK,
   };
   const {getByText} = render(<OrderbookListItem {...updatedProps} />);
   const item = getByText(formatPrice({price: props.priceLevel.price}));

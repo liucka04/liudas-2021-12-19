@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import {useOrderbookContext} from '~/providers/Orderbook/hooks/useFeedContext';
-import {LevelType} from '~/providers/Orderbook/types/enums';
+import {PriceLevelType} from '~/providers/Orderbook/types/enums';
 import {useVisibleItemsCount} from '../useVisibleItemsCount';
 import {calculateTotalForPriceLevels} from './utils/calculateTotalForPriceLevels';
 
@@ -14,11 +14,11 @@ export const usePriceLevelTotals = () => {
   return {
     asks: calculateTotalForPriceLevels({
       priceLevels: visibleAsks,
-      priceLevelType: LevelType.ASK,
+      priceLevelType: PriceLevelType.ASK,
     }),
     bids: calculateTotalForPriceLevels({
       priceLevels: visibleBids,
-      priceLevelType: LevelType.BID,
+      priceLevelType: PriceLevelType.BID,
     }),
   };
 };

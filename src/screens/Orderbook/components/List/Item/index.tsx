@@ -2,14 +2,14 @@ import React, {FC} from 'react';
 import {Box} from '~/components/Box';
 import Text from '~/components/Text';
 import {PriceLevel} from '~/providers/Orderbook/types';
-import {LevelType} from '~/providers/Orderbook/types/enums';
+import {PriceLevelType} from '~/providers/Orderbook/types/enums';
 import {OrderbookListItemGraph} from './Graph';
 import {formatPrice} from './utils/formatPrice';
 
 type Props = {
   priceLevel: PriceLevel;
   highestTotal: number;
-  levelType: LevelType;
+  levelType: PriceLevelType;
 };
 
 export const OrderbookListItem: FC<Props> = ({
@@ -19,7 +19,7 @@ export const OrderbookListItem: FC<Props> = ({
 }) => {
   const {price, size, total} = priceLevel;
 
-  const isBids = levelType === LevelType.BID;
+  const isBids = levelType === PriceLevelType.BID;
   const textColor = isBids ? 'green' : 'red';
 
   return (

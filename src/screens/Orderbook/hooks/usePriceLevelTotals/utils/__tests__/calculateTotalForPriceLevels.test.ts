@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {LevelType} from '~/providers/Orderbook/types/enums';
+import {PriceLevelType} from '~/providers/Orderbook/types/enums';
 import {calculateTotalForPriceLevels} from '../calculateTotalForPriceLevels';
 
 const priceLevels = [
@@ -26,7 +26,7 @@ it('it should calulate totals correctly by adding sizes BOTTOM TO TOP when level
   ];
 
   const result = calculateTotalForPriceLevels({
-    priceLevelType: LevelType.ASK,
+    priceLevelType: PriceLevelType.ASK,
     priceLevels,
   });
 
@@ -46,7 +46,7 @@ it('it should calulate totals correctly by adding sizes TOP TO BOTTOM when level
   ];
 
   const result = calculateTotalForPriceLevels({
-    priceLevelType: LevelType.BID,
+    priceLevelType: PriceLevelType.BID,
     priceLevels,
   });
 

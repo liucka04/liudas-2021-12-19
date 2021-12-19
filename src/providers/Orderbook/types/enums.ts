@@ -15,7 +15,7 @@ export enum MessageFeedType {
   DELTA = 'book_ui_1',
 }
 
-export enum LevelType {
+export enum PriceLevelType {
   BID = 'BID',
   ASK = 'ASK',
 }

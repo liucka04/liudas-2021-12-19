@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import {Box} from '~/components/Box';
 import {PriceLevel} from '~/providers/Orderbook/types';
-import {LevelType} from '~/providers/Orderbook/types/enums';
+import {PriceLevelType} from '~/providers/Orderbook/types/enums';
 import {OrderbookListItem} from './Item';
 
 type Props = {
   items: PriceLevel[];
-  type: LevelType;
+  type: PriceLevelType;
   highestTotal: number;
 };
 

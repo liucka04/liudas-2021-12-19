@@ -4,7 +4,7 @@ import {Screen} from '~/components/Screen';
 import {ScreenHeader} from '~/components/ScreenHeader';
 import {useOrderbookContext} from '~/providers/Orderbook/hooks/useFeedContext';
 import {useSubscribeProduct} from '~/providers/Orderbook/hooks/useSubscribeProduct';
-import {LevelType, ProductId} from '~/providers/Orderbook/types/enums';
+import {PriceLevelType, ProductId} from '~/providers/Orderbook/types/enums';
 import {Error} from './components/Error';
 import {OrderbookFooter} from './components/Footer';
 import {List} from './components/List';
@@ -45,9 +45,17 @@ export const OrderbookScreen: FC = () => {
         <ScreenHeader title="Order Book" />
         <OrderbookListHeader />
         <Box flex={1}>
-          <List items={asks} type={LevelType.ASK} highestTotal={highestTotal} />
+          <List
+            items={asks}
+            type={PriceLevelType.ASK}
+            highestTotal={highestTotal}
+          />
           <OrderbookSpread spread={getSpread({asks, bids})} />
-          <List items={bids} type={LevelType.BID} highestTotal={highestTotal} />
+          <List
+            items={bids}
+            type={PriceLevelType.BID}
+            highestTotal={highestTotal}
+          />
         </Box>
         <OrderbookFooter />
       </Screen>

@@ -2,7 +2,7 @@ import 'react-native';
 import React from 'react';
 import {render, RenderAPI} from '@testing-library/react-native';
 import {List} from '../index';
-import {LevelType} from '~/providers/Orderbook/types/enums';
+import {PriceLevelType} from '~/providers/Orderbook/types/enums';
 
 const props = {
   highestTotal: 10000,
@@ -12,7 +12,7 @@ const props = {
     {price: 101.5, size: 50, total: 310},
     {price: 102, size: 10, total: 320},
   ],
-  type: LevelType.ASK,
+  type: PriceLevelType.ASK,
 };
 let renderedList: RenderAPI;
 

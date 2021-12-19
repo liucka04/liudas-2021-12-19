@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {LevelType} from '~/providers/Orderbook/types/enums';
+import {PriceLevelType} from '~/providers/Orderbook/types/enums';
 import {getPriceLevelItemSizes} from '../getPriceLevelItemSizes';
 
 const priceLevels = [
@@ -20,7 +20,7 @@ it('should map curent(by index) and all ABOVE items size to array when level typ
   ).map(item => item.size);
 
   const result = getPriceLevelItemSizes({
-    priceLevelType: LevelType.BID,
+    priceLevelType: PriceLevelType.BID,
     itemIndex: _.findLastIndex(priceLevels),
     items: priceLevels,
   });
@@ -32,7 +32,7 @@ it('should map curent(by index) and all BELOW items size to array when level typ
   const expectedResult = [_.last(priceLevels)?.size];
 
   const result = getPriceLevelItemSizes({
-    priceLevelType: LevelType.ASK,
+    priceLevelType: PriceLevelType.ASK,
     itemIndex: _.findLastIndex(priceLevels),
     items: priceLevels,
   });

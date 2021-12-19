@@ -8,12 +8,12 @@ const getThrottleTime = async () => {
   const memoryBytes = await getTotalMemory();
   const memoryGb = bytesToGigaBytes({bytes: memoryBytes});
 
-  if (memoryGb < 8) {
-    return 1000;
-  }
-
   if (memoryGb < 4) {
     return 1500;
+  }
+
+  if (memoryGb < 8) {
+    return 1000;
   }
 
   return 500;

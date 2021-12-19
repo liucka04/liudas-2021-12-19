@@ -5,12 +5,16 @@ import Text from '../Text';
 
 type Props = {
   onPress: () => void;
+  isDisabled?: boolean;
 };
 
-export const Button: FC<Props> = ({onPress, children}) => {
+export const Button: FC<Props> = ({onPress, isDisabled, children}) => {
   return (
-    <Pressable onPress={onPress} testID="button">
-      <Box justifyContent="center" alignItems="center">
+    <Pressable onPress={isDisabled ? undefined : onPress} testID="button">
+      <Box
+        justifyContent="center"
+        alignItems="center"
+        opacity={isDisabled ? 0.5 : 1}>
         <Box
           backgroundColor="purple"
           borderRadius="md"

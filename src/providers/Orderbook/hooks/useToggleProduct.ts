@@ -4,7 +4,8 @@ import {subscribeProductEvent, unsubscribeProductEvent} from '../utils/events';
 import {useOrderbookContext} from './useFeedContext';
 
 export const useToggleProduct = () => {
-  const {dispatch, socket, productId, isConnected} = useOrderbookContext();
+  const {dispatch, socket, productId, isConnected, isLoading} =
+    useOrderbookContext();
 
   const toggleProduct = useCallback(() => {
     if (!isConnected || !socket) {
@@ -14,6 +15,14 @@ export const useToggleProduct = () => {
     dispatch({
       type: OrderbookAction.SET_LOADING,
       isLoading: true,
+    });
+
+    dispatch({
+      type: OrderbookAction.SET_PRICE_LEVELS,
+      priceLevels: {
+        asks: [],
+        bids: [],
+      },
     });
 
     const nextProductId =
@@ -30,5 +39,5 @@ export const useToggleProduct = () => {
     });
   }, [dispatch, isConnected, productId, socket]);
 
-  return {toggleProduct};
+  return {toggleProduct, isLoading};
 };

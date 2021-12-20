@@ -8,7 +8,7 @@ export const usePriceLevelTotals = () => {
   const {asks, bids} = useOrderbookContext();
   const {visibleItemsInListCount} = useVisibleItemsCount();
 
-  const visibleAsks = _.take(asks, visibleItemsInListCount);
+  const visibleAsks = _.takeRight(asks, visibleItemsInListCount);
   const visibleBids = _.take(bids, visibleItemsInListCount);
 
   return {

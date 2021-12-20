@@ -15,6 +15,20 @@ it('should handle SET_LOADING action correctly', () => {
   expect(_.isEqual(expectedResult, result)).toBeTruthy();
 });
 
+it('should handle SET_ERROR action correctly', () => {
+  const errorMessage = 'Something went wrong';
+  const result = orderbookReducer(defaultContext, {
+    type: OrderbookAction.SET_ERROR,
+    errorMessage,
+  });
+  const expectedResult: OrderbookContextState = {
+    ...defaultContext,
+    errorMessage,
+  };
+
+  expect(_.isEqual(expectedResult, result)).toBeTruthy();
+});
+
 it('should handle SET_PRODUCT_ID action correctly', () => {
   const productId = ProductId.XBTUSD;
 

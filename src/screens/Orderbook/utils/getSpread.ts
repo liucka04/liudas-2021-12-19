@@ -8,24 +8,24 @@ type GetSpreadParams = {
 
 type GetPercentageParams = {
   spreadValue: number;
-  highestBidPrice: number;
+  lowestAskPrice: number;
 };
 
-const getPercentage = ({spreadValue, highestBidPrice}: GetPercentageParams) => {
-  const spreadPercentage = (spreadValue / highestBidPrice) * 100;
+const getPercentage = ({spreadValue, lowestAskPrice}: GetPercentageParams) => {
+  const spreadPercentage = (spreadValue / lowestAskPrice) * 100;
 
   return spreadPercentage.toFixed(2);
 };
 
 export const getSpread = ({bids, asks}: GetSpreadParams) => {
   const highestBidPrice = _.first(bids)?.price;
-  const highestAskPrice = _.first(asks)?.price;
+  const lowestAskPrice = _.last(asks)?.price;
 
-  if (highestBidPrice && highestAskPrice) {
-    const spreadValue = Math.abs(highestBidPrice - highestAskPrice);
+  if (highestBidPrice && lowestAskPrice) {
+    const spreadValue = Math.abs(highestBidPrice - lowestAskPrice);
     return {
       value: _.round(spreadValue, 1).toFixed(1).toLocaleString(),
-      percentage: getPercentage({highestBidPrice, spreadValue}),
+      percentage: getPercentage({lowestAskPrice, spreadValue}),
     };
   } else {
     return null;

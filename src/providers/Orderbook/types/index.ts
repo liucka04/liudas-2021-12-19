@@ -6,6 +6,7 @@ import {
   ActionSetProductId,
   ActionSetBids,
   ActionSetAsks,
+  ActionSetError,
 } from './actions';
 import {ProductId} from './enums';
 
@@ -17,6 +18,7 @@ export type OrderbookActionType =
   | ActionSetBids
   | ActionSetAsks
   | ActionSetLoading
+  | ActionSetError
   | ActionSetProductId
   | ActionSetPausedConnection;
 
@@ -42,9 +44,11 @@ export type OrderbookContextType = {
   asks: RawPriceLevel[] | null;
   bids: RawPriceLevel[] | null;
   isLoading: boolean;
-  error: undefined;
+  errorMessage?: string;
   isConnected: boolean;
   socket?: WebSocket;
   isConnectionPaused: boolean;
   dispatch: Dispatch<OrderbookActionType>;
 };
+
+export type Error = {};

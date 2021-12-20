@@ -1,15 +1,17 @@
-import React, {FC} from 'react';
-import {Box} from '~/components/Box';
-import Text from '~/components/Text';
+import React from 'react';
+import {Error} from '~/components/Error';
+import {useOrderbookContext} from '~/providers/Orderbook/hooks/useFeedContext';
+import {useSubscribeProduct} from '~/providers/Orderbook/hooks/useSubscribeProduct';
+import {OrderbookAction} from '~/providers/Orderbook/types/enums';
 
-type Props = {
-  errorMessage?: string;
-};
+export const OrderbookError = () => {
+  const {dispatch, productId} = useOrderbookContext();
+  const {subscribeProduct} = useSubscribeProduct();
 
-export const Error: FC<Props> = ({errorMessage = 'Something went wrong'}) => {
-  return (
-    <Box flex={1} justifyContent="center" alignItems="center">
-      <Text>{errorMessage}</Text>
-    </Box>
-  );
+  const onRefresh = () => {
+    dispatch({type: OrderbookAction.SET_ERROR, errorMessage: undefined});
+    subscribeProduct({productId: productId});
+  };
+
+  return <Error onRefresh={onRefresh} />;
 };

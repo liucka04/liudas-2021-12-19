@@ -21,6 +21,11 @@ export type ActionSetLoading = {
   isLoading: boolean;
 };
 
+export type ActionSetError = {
+  type: OrderbookAction.SET_ERROR;
+  errorMessage?: string;
+};
+
 export type ActionSetProductId = {
   type: OrderbookAction.SET_PRODUCT_ID;
   productId: ProductId;

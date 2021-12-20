@@ -6,7 +6,7 @@ export const defaultContext: OrderbookContextType = {
   asks: null,
   bids: null,
   isLoading: true,
-  error: undefined,
+  errorMessage: undefined,
   isConnected: false,
   productId: ProductId.XBTUSD,
   isConnectionPaused: false,

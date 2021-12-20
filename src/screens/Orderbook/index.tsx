@@ -5,7 +5,6 @@ import {ScreenHeader} from '~/components/ScreenHeader';
 import {useOrderbookContext} from '~/providers/Orderbook/hooks/useFeedContext';
 import {useSubscribeProduct} from '~/providers/Orderbook/hooks/useSubscribeProduct';
 import {PriceLevelType, ProductId} from '~/providers/Orderbook/types/enums';
-import {Error} from './components/Error';
 import {OrderbookFooter} from './components/Footer';
 import {List} from './components/List';
 import {OrderbookListHeader} from './components/ListHeader';
@@ -15,9 +14,10 @@ import {ResumeConnection} from './components/ResumeConnection';
 import {getSpread} from './utils/getSpread';
 import {usePriceLevelTotals} from './hooks/usePriceLevelTotals';
 import {getHighestTotal} from './utils/getHighestTotal';
+import {OrderbookError} from './components/Error';
 
 export const OrderbookScreen: FC = () => {
-  const {error, isLoading} = useOrderbookContext();
+  const {isLoading, errorMessage} = useOrderbookContext();
   const {asks, bids} = usePriceLevelTotals();
   const {subscribeProduct} = useSubscribeProduct();
 
@@ -30,8 +30,8 @@ export const OrderbookScreen: FC = () => {
     return <OrderbookSkeleton />;
   }
 
-  if (error || !asks || !bids) {
-    return <Error />;
+  if (errorMessage || !asks || !bids) {
+    return <OrderbookError />;
   }
 
   const highestTotal = getHighestTotal({

@@ -13,6 +13,6 @@ export const bids: PriceLevel[] = [
   {price: 300, size: 32, total: 7777},
 ];
 
-export const expectedSpreadValue = '50.5';
-export const expectedPercentage = '2.46';
+export const expectedSpreadValue = '1550.5';
+export const expectedPercentage = '310.10';
 export const expectedHighestTotal = 7777;

@@ -11,6 +11,11 @@ export const orderbookReducer = (
         ...state,
         isLoading: action.isLoading,
       };
+    case OrderbookAction.SET_ERROR:
+      return {
+        ...state,
+        errorMessage: action.errorMessage,
+      };
     case OrderbookAction.SET_CONNECTION_PAUSED:
       return {
         ...state,

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {Dispatch} from 'react';
 import {Message, OrderbookActionType} from '../types';
 import {OrderbookAction} from '../types/enums';
@@ -16,11 +17,23 @@ export const setSnapshotMessage = ({dispatch, message}: Params) => {
     return;
   }
 
+  const orderedAsks = _.orderBy(
+    mapPriceLevels({levels: asks}).filter(ask => ask.price > 0),
+    ['price'],
+    ['desc'],
+  );
+
+  const orderedBids = _.orderBy(
+    mapPriceLevels({levels: bids}).filter(bid => bid.price > 0),
+    ['price'],
+    ['desc'],
+  );
+
   dispatch({
     type: OrderbookAction.SET_PRICE_LEVELS,
     priceLevels: {
-      asks: trimPriceLevels({priceLevels: mapPriceLevels({levels: asks})}),
-      bids: trimPriceLevels({priceLevels: mapPriceLevels({levels: bids})}),
+      asks: trimPriceLevels({priceLevels: orderedAsks}),
+      bids: trimPriceLevels({priceLevels: orderedBids}),
     },
   });
 

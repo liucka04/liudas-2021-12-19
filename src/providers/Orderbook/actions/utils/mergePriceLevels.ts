@@ -8,40 +8,22 @@ type Params = {
 };
 
 export const mergePriceLevels = ({stateLevels, incomingLevels}: Params) => {
-  // find levels with matching prices for replacement
-  const intersectingLevels = _.intersectionWith(
-    incomingLevels,
-    stateLevels,
-    (a, b) => a.price === b.price,
+  // uniqBy picks first unique element in array
+  // most recent price levels are in the back of the array
+  // so we reverse it and pick latest unique records
+  // by price from the begining
+  const uniquePriceLevels = _.uniqBy(
+    _.reverse([...stateLevels, ...incomingLevels]),
+    'price',
   );
 
-  // remove old levels when incoming levels has matching prices
-  const stateWithoutIntersectingLevels = _.reject(stateLevels, stateLevel =>
-    intersectingLevels.some(
-      intersectingLevel => intersectingLevel.price === stateLevel.price,
-    ),
-  );
-
-  const allLevels = stateWithoutIntersectingLevels.concat(incomingLevels);
-
+  // remove nullish size levels and order descending by price
   const orderedLevels = _.orderBy(
-    allLevels.filter(level => level.size > 0),
+    uniquePriceLevels.filter(level => level.size > 0),
     ['price'],
     ['desc'],
   );
 
-  const priceLevels = trimPriceLevels({priceLevels: orderedLevels});
-
-  // if states are equal, no need to rerender
-  if (_.isEqual(priceLevels, stateLevels)) {
-    return {
-      skipDispatch: true,
-      priceLevels: [],
-    };
-  }
-
-  return {
-    skipDispatch: false,
-    priceLevels,
-  };
+  // we dont want to bloat the state, so we trim the final array
+  return trimPriceLevels({priceLevels: orderedLevels});
 };

@@ -1,33 +1,26 @@
-import {Dispatch} from 'react';
-import {RawPriceLevel, Message, OrderbookActionType} from '../types';
+import {Dispatch, MutableRefObject} from 'react';
+import {RawPriceLevel, OrderbookActionType, MessageQueue} from '../types';
 import {OrderbookAction} from '../types/enums';
 import {mapPriceLevels} from './utils/mapPriceLevels';
 import {mergePriceLevels} from './utils/mergePriceLevels';
 
 type Params = {
-  message: Message;
   dispatch: Dispatch<OrderbookActionType>;
   stateBids: RawPriceLevel[];
+  messageQueueRef: MutableRefObject<MessageQueue>;
 };
 
-export const setBids = ({message, stateBids, dispatch}: Params) => {
-  const {bids} = message;
-
-  if (!bids || bids.length === 0) {
-    return;
-  }
-
-  const {priceLevels, skipDispatch} = mergePriceLevels({
-    incomingLevels: mapPriceLevels({levels: bids}),
-    stateLevels: stateBids,
-  });
-
-  if (skipDispatch) {
-    return;
-  }
+export const setBids = ({stateBids, dispatch, messageQueueRef}: Params) => {
+  const {bids: queuedBids} = messageQueueRef.current;
 
   dispatch({
     type: OrderbookAction.SET_BIDS,
-    bids: priceLevels,
+    bids: mergePriceLevels({
+      incomingLevels: mapPriceLevels({levels: queuedBids}),
+      stateLevels: stateBids,
+    }),
   });
+
+  // clear message queue
+  messageQueueRef.current.bids = [];
 };

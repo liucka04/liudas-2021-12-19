@@ -25,6 +25,11 @@ export type OrderbookContextState = Omit<
   'dispatch' | 'socket'
 >;
 
+export type MessageQueue = {
+  asks: [number, number][];
+  bids: [number, number][];
+};
+
 export type Message = {
   feed: 'book_ui_1';
   product_id: ProductId;

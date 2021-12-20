@@ -24,11 +24,10 @@ it('should replace state levels with incoming levels if price matches, sort DESC
     {price: 150, size: 2000},
   ];
 
-  const {priceLevels, skipDispatch} = mergePriceLevels({
+  const priceLevels = mergePriceLevels({
     incomingLevels,
     stateLevels: stateLevels,
   });
 
-  expect(skipDispatch).toBeFalsy();
   expect(_.isEqual(priceLevels, expectedResult)).toBeTruthy();
 });

@@ -24,6 +24,18 @@ export const useMessages = ({state, dispatch}: Params) => {
         return;
       }
 
+      // When product subscription changes, clear queue
+      // and cancel throttled state setting
+      if (state.productId !== messageJson.product_id) {
+        throttledSetAsks.cancel();
+        throttledSetBids.cancel();
+        messageQueueRef.current = {
+          asks: [],
+          bids: [],
+        };
+        return;
+      }
+
       throttledSetAsks({
         messageQueueRef,
         stateAsks: state.asks ?? [],

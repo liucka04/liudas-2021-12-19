@@ -1,7 +1,7 @@
 import {Dispatch} from 'react';
-import {setSnapshotMessage} from '../actions/setSnapshotMessage';
-import {Message, OrderbookActionType, OrderbookContextState} from '../types';
-import {MessageFeedType} from '../types/enums';
+import {setSnapshotMessage} from '../../actions/setSnapshotMessage';
+import {Message, OrderbookActionType, OrderbookContextState} from '../../types';
+import {MessageFeedType} from '../../types/enums';
 import {useMessageQueue} from './useMessageQueue';
 import {useThrottle} from './useThrottle';
 

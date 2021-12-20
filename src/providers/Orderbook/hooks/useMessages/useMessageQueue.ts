@@ -1,5 +1,5 @@
 import {useCallback, useRef} from 'react';
-import {Message, MessageQueue} from '../types';
+import {Message, MessageQueue} from '../../types';
 
 export const useMessageQueue = () => {
   const messageQueueRef = useRef<MessageQueue>({asks: [], bids: []});
